@@ -18,9 +18,31 @@ void Display(struct Array arr)
     {
         cout<<arr.a[i]<<" ";
     }
+
 }
 
+void Rearrange(struct Array *arr)
+{
+    int i,j;
+    i=0;
+    j=arr->length-1;
+    while(i<j)
+    {
+        while(arr->a[i]<0)i++;
+        while(arr->a[j]>=0)j--;
+        if(i<j)
+        {
+            int temp=arr->a[i];
+            arr->a[i]=arr->a[j];
+            arr->a[j]=temp;
+        }
+    }
 
+    for(i=0;i<arr->length;i++)
+    {
+        cout<<arr->a[i]<<" ";
+    }
+}
 
 
 
@@ -43,10 +65,18 @@ int main()
     }
     arr.length=n;
     Display(arr);
-    cout<<endl;
+    cout<<endl<<"After Rearranging the array it becomes : ";
+    Rearrange(&arr);
+
+
+
+
+
+
 
 
 
 
 
 }
+
