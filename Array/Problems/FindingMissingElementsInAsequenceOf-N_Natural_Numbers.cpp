@@ -37,8 +37,10 @@ void Missing_Elements(int *arr,int n)
 int main()
 {
     int n,i;
+    cout<<"Enter the number of elements in the array:  ";
     cin>>n;
     int *arr=new int[n];
+    cout<<endl<<"Enter the elements: "<<endl;
     for(int i=0;i<n;i++)
     {
         cin>>arr[i];
