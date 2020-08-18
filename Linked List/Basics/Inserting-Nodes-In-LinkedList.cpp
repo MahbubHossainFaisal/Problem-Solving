@@ -1,6 +1,26 @@
 #include <iostream>
 using namespace std;
 
+/* Inserting in a linked list can be in two ways
+1.Inserting before first index
+2.Inserting after given position
+
+Steps:(Inserting before first node)
+1. Create a node
+2. Initialize it with data
+3. node->next will be the address of current first node
+3.First pointer will be addressed the new node as first node.
+
+Steps: (Inserting after a given position)
+1. create a new pointer p and point to first node;
+2. Traverse with the p pointer till the given node position minus one times.(means if position is 4,move p for 3 times.)
+3. create a new node t;
+4. node->next will be p->next
+5. p->next will be t;
+
+*/
+
+
 struct Node {
 
  int data;
@@ -45,6 +65,40 @@ void Display(struct Node *p)
 
 
 
+void InsertAfterPosition(int pos,int x)
+{
+    if(pos==0)
+    {
+    struct Node *p=new Node;
+    p->data=x;
+    p->next=first;
+    first = p;
+    }
+
+    else if(pos>0)
+    {
+         struct Node *p,*temp;
+    p=first;
+    for(int i = 1 ; i <= pos-1 && p; i++)
+    {
+        p=p->next;
+    }
+    if(p)
+    {
+    temp=new Node;
+    temp->data=x;
+    temp->next=p->next;
+    p->next=temp;
+
+    }
+    else
+    {
+        cout<<"Give proper position."<<endl;
+    }
+
+    }
+
+}
 
 
 
@@ -53,6 +107,20 @@ int main()
 
     int arr[]={2,4,6,8,10};
 
-    create(arr,5);
+    //create(arr,5);
     Display(first);//passing the address of the first Node .
+
+
+    InsertAfterPosition(0,1); //First position must be given first manually
+    int k=1;
+    for(int i =1 ; i<100000; i++)
+    {
+        InsertAfterPosition(i,++k);
+    }
+
+    Display(first);
+
+
+
 }
+

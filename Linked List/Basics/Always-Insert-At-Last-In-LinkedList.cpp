@@ -1,19 +1,20 @@
 #include <iostream>
 using namespace std;
 
+
 struct Node {
 
  int data;
  struct Node *next;
 
-}*first=NULL;       //this first pointer is declared globally because we will need this to call in the main function
+}*first=NULL,*last=NULL;       //this first pointer is declared globally because we will need this to call in the main function
 
 
 
 void create(int arr[],int n){
 
     int i;
-    struct Node *t,*last;
+    struct Node *t;
     first=new Node;             // creates a new node and hold the address of the node
     first->data=arr[0];
     first->next=NULL;
@@ -44,6 +45,22 @@ void Display(struct Node *p)
 }
 
 
+void InsertAtLast(int x)
+{
+    struct Node *t=new Node;
+    t->data=x;
+    t->next=NULL;
+    if(first == NULL)
+    {
+        first=t;
+        last=t;
+    }
+    else
+    {
+        last->next =t;
+        last=t;
+    }
+}
 
 
 
@@ -55,4 +72,16 @@ int main()
 
     create(arr,5);
     Display(first);//passing the address of the first Node .
+    cout<<endl<<"Enter a Value: ";
+    int x;
+    cin>>x;
+    cout<<"After inserting at last List has become: "<<endl;
+    InsertAtLast(x);
+
+
+
+    Display(first);
+
+
+
 }
