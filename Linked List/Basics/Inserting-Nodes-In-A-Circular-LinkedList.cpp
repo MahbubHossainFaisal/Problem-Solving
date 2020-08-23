@@ -36,14 +36,14 @@ void create(int arr[],int n){
     struct Node *t,*last;
     first=new Node;             // creates a new node and hold the address of the node
     first->data=arr[0];
-    first->next=NULL;
+    first->next=first;    //in circular linked list node->next can't be null.As a first node it will point itself to be circular.
     last=first;             //pointing last pointer to the first node.So now first and last two pointers are pointing the same node
 
     for(i=1;i<n;i++)
     {
         t=new Node;         //creating a Node using a temporary pointer
         t->data=arr[i];
-        t->next=NULL;
+        t->next=last->next; //in circular linked list node->next can't be null
         last->next=t;       //last->next is storing the address of the new node created by t pointer.
         last=t;
 
@@ -56,11 +56,14 @@ void create(int arr[],int n){
 
 void Display(struct Node *p)
 {
-    while(p!=NULL)
-    {
+       do {
         cout<<p->data<<" ";
-        p=p->next;          //this is for traversing the whole linked list
-    }
+        p=p->next;          //this is for traversing the whole linked list.We have to use do while loop
+        } while(p!=first); //in terms of circular linked list because if we use while loop with the condition
+                            //p!=first the loop won't run because  at first p is already pointing to first.so
+                            //we have to make the loop iterate after first time when the p pointer will point in second node.
+
+
 }
 
 
@@ -68,11 +71,19 @@ void Display(struct Node *p)
 void InsertAfterPosition(int pos,int x)
 {
     if(pos==0)
-    {
+    { // for circular linked list if we want to insert before the first position,than the code will be changed a bit else it is same to the linear one.
+        struct Node *t=first;
     struct Node *p=new Node;
     p->data=x;
     p->next=first;
-    first = p;
+
+    while(t->next!=first)
+    {
+        t=t->next;
+    }
+    t->next=p;
+    first=p;
+
     }
 
     else if(pos>0)
@@ -115,8 +126,10 @@ int main()
 
 
     Display(first);
+    cout<<endl<<first->data;
 
 
 
 }
+
 
