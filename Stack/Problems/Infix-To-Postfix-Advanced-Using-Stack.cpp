@@ -1,19 +1,48 @@
 
 
 /*
-  Symbol  :  out stack precedence   :  In stack precedence
+  Symbol  :  out stack precedence   :  In stack precedence  :  Associativity
 
-  (+,-)   :             1             :         2
+  (+,-)   :             1             :         2           :    L->R
 
-  (*,/)   :             3             :         4
+  (*,/)   :             3             :         4           :    L->R
 
-  (^)     :             6             :         5   (this is different than others because it is right,left associativity)
+  (^)     :             6             :         5           :    R->L  (this is different than others because it is right,left associativity)
 
-  ("(")   :             7             :         0
+  ("(")   :             7             :         0           :    L->R
 
-  (")")   :             0             :         we won't push it.
+  (")")   :             0             :   we won't push it. :    L->R
 
 
+
+*/
+
+/*
+Example: String -> ((a+b)*c)-d^e^f
+
+let say, op= out stack precedence
+         ip=inside stack precedence
+         After being pushed in the stack ,elements will behave as according to the inner stack precedence ip
+
+( ->  op=7 -> push('(') -> Stack:(
+                                  ( ->  op=7 -> push('(') -> Stack:((
+a ->  direct send to postfix array -> postfix:a
++ ->  op=1 ,this is > than stack top element precedence -> push(+) -> Stack:((+
+b ->  direct send to postfix array -> postfix:ab
+) ->  op=1 ,this is < than stack top element precedence -> pop() stack top and send it to the postfix array. postfix:ab+ -> Stack: ((
+) ->  op=1 ,this is = stack top element precedence -> pop() just -> Stack:( -> move to the next string element
+* ->  op=3 ,this is > than stack top element precedence -> push(*) -> Stack:(*
+c ->  direct send to postfix array -> postfix:ab+c
+) ->  op=1 ,this is < than stack top element precedence -> pop() stack top and send it to the postfix array. postfix:ab+c* -> Stack: (
+) ->  op=1 ,this is = stack top element precedence -> pop() just -> Stack:( -> move to the next string element
+- ->  - ->  op=2 ,this is > than stack top element precedence -> push(*) -> Stack:-
+d ->  direct send to postfix array -> postfix:ab+c*d
+^ ->  op=6 , this is > than stack top element precedence -> push(^) -> Stack:-^
+e ->   direct send to postfix array -> postfix:ab+c*de   (because in the stack ^ precedence is 5)
+^ ->  op=6 , this is > than stack top element precedence -> push(^) -> Stack:-^^
+f ->  direct send to postfix array -> postfix:ab+c*def
+So,the string elements has finished but we have elements remaining on the stack , we will pop them one by one and add them in postfix array
+Finally, The postfix array will become : ab+c*def^^- ,which is the postfix of ((a+b)*c)-d^e^f
 
 */
 
@@ -65,19 +94,39 @@ char pop(){
 
 }
 
-//returning the precedences of the operator using the below function
-int precedence(char x){
+//returning the precedences of the operator when outside of the stack using the below function
+int OutStackPrecedence(char x){
     if(x=='+' || x=='-')
-        return 1;// because precedence of +,- is 1
+        return 1;
    else if(x=='*' || x=='/')
-    return 2; //because precedence of *,/ is 2
-   else
-    return 0; //if there is no operator
+    return 3;
+   else if(x=='^')
+    return 6;
+   else if(x=='(')
+    return 7;
+   else if (x==')')
+    return 0;
 }
+
+int InStackPrecedence(char x){
+    if(x=='+' || x=='-')
+        return 2;
+   else if(x=='*' || x=='/')
+    return 4;
+   else if(x=='^')
+    return 5;
+   else if(x=='(')
+    return 0;
+    else
+    return -1;
+
+}
+
 
 int isOperand(char x)
 {
-    if(x=='+' || x=='-' || x=='*' || x=='/')
+    if(x=='+' || x=='-' || x=='*' || x=='/' || x=='^'  || x=='(' || x==')' )
+
         return 0; //means they are not operand(letters)
     else
         return 1;
@@ -92,8 +141,19 @@ void InfixToPostfix(string infix)
             if(isOperand(infix[i])){
                 postfix[j++]=infix[i++]; //if the element of the infix array is an operand than direct send it to postfix array
             }
+
             else{
-                if(precedence(infix[i])>precedence(top->data)){ //To check this,We have to have an initial element in the stack.So,in the main function we pushed one element initially else the condition won't work because stack->top is null
+                if(OutStackPrecedence(infix[i])== 0){
+                    if(InStackPrecedence(top->data)==OutStackPrecedence(infix[i])){
+                        pop();
+                        i++;
+                    }
+                    else{
+                        postfix[j++]=pop();
+                    }
+                }
+
+              else  if(OutStackPrecedence(infix[i])>InStackPrecedence(top->data)){ //To check this,We have to have an initial element in the stack.So,in the main function we pushed one element initially else the condition won't work because stack->top is null
                     push(infix[i++]); //else check the operator of the array is > than the stack top element .If so,then push it to the stack
                 }
                 else{
@@ -114,7 +174,8 @@ void InfixToPostfix(string infix)
 
 int main()
 {
-    string infix = "a+b*c/e+f*g+h-i/j/l";
+    string infix ;
+    cin>>infix;
     cout<<"INFIX: "<<infix<<endl;
     Stack st;
     st.push('.');//We have to first push  any one element to the stack
