@@ -156,6 +156,106 @@ class Tree
         }
 
     }
+
+    int countNodes(Node *p)
+    {
+
+        /*As we are using recursion ,Say example from root node first the p pointer will go to till the last left child from the root node,
+            After the last left child p becomes null,So in  x there will be 0 stored.Then p will go for finding right child if the last left child have any.
+            After when p will become null in y there will be stored 0 . then we are returning x+y+1 means 0+0+1,
+            By following this method while traversing every node,that node will return a 1 value .and adding them we will find the node number.
+        */
+        int x,y;
+        if(p)
+        {
+            x=countNodes(p->lchild);
+            y=countNodes(p->rchild);
+            return x+y+1;
+        }
+        return 0;
+    }
+
+    int countLeafNodes(Node *p)
+    {
+         int x,y;
+        if(p)
+        {
+            x=countLeafNodes(p->lchild);
+            y=countLeafNodes(p->rchild);
+            if(!p->lchild && !p->rchild)
+            {
+                return x+y+1;
+            }
+            else
+            {
+                return x+y;
+            }
+
+        }
+
+        return 0;
+    }
+
+    int countNodesOfDegreeOne(Node *p)
+    {
+         int x,y;
+        if(p)
+        {
+            x=countNodesOfDegreeTwo(p->lchild);
+            y=countNodesOfDegreeTwo(p->rchild);
+            if((p->lchild && !p->rchild) || (!p->lchild && p->rchild))
+            {
+                return x+y+1;
+            }
+            else
+            {
+                return x+y;
+            }
+        }
+
+        return 0;
+    }
+
+    int countNodesOfDegreeTwo(Node *p)
+    {
+         int x,y;
+        if(p)
+        {
+            x=countNodesOfDegreeTwo(p->lchild);
+            y=countNodesOfDegreeTwo(p->rchild);
+            if(p->lchild && p->rchild)
+            {
+                return x+y+1;
+            }
+            else
+            {
+                return x+y;
+            }
+        }
+
+        return 0;
+    }
+
+    int countNonLeafNodes(Node *p)
+    {
+         int x,y;
+        if(p)
+        {
+            x=countNonLeafNodes(p->lchild);
+            y=countNonLeafNodes(p->rchild);
+            if(p->lchild || p->rchild)
+            {
+                return x+y+1;
+            }
+            else
+            {
+                return x+y;
+            }
+
+        }
+
+        return 0;
+    }
 };
 
 
@@ -172,4 +272,9 @@ int main()
     cout<<endl<<"Height of the tree is: "<<t.Height(t.root)-1;
     cout<<endl<<"Level Order: "<<endl;
     t.levelOrder(t.root);
+    cout<<endl<<"The number of nodes in the binary tree are: "<<t.countNodes(t.root)<<endl;
+    cout<<endl<<"Number of leaf nodes: "<<t.countLeafNodes(t.root)<<endl;
+     cout<<endl<<"Number of nodes with degree 1: "<<t.countNodesOfDegreeOne(t.root)<<endl;
+    cout<<endl<<"Number of nodes with degree 2: "<<t.countNodesOfDegreeTwo(t.root)<<endl;
+     cout<<endl<<"Number of Non leaf nodes: "<<t.countNonLeafNodes(t.root);
 }
