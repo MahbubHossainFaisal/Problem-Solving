@@ -1,16 +1,4 @@
 
-/* Heap:
-Heap is a complete binary tree. Means,if we store it to the array there will be
-no gap between the elements.Duplicate data are allowed in heap.
-Mostly they are represented as array.Height of heap will always be log(n) as it is
-complete binary tree.
-
-Conditions :
-1.Must be binary tree.
-2.Max Heap: Every nodes should have the elements greater than or equal to it's descendants(children)
-
-*/
-
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -24,14 +12,16 @@ void display(int arr[])
         cout<<arr[i]<<" ";
     }
 }
+
+//Time complexity of this insert function will be nlog(n)
 void Insert(int arr[],int n)
 {
     int temp,i=n;
     temp=arr[n]; //storing the last element value of the array
-    //the while loop will run till i reaches the first element and temp value is greater than it's parent value
-    while(i > 1 && temp > arr[i/2])
+    //the while loop will run till i reaches the first element and temp value is smaller than it's parent value
+    while(i > 1 && temp < arr[i/2])
     {
-        arr[i]=arr[i/2]; //if child value is greater than parent value then we are changing it.
+        arr[i]=arr[i/2]; //if child value is smaller than parent value then we are changing it.
         i=i/2; //going to the previous parent index.(backword)
     }
     arr[i]=temp;
@@ -51,14 +41,14 @@ void Delete(int arr[],int n)
     i=1;
     j=2*i; //pointing to the left child.
 
-    while(j<=6)
+    while(j<n-1)
     {
-        //first we will compare the left child and right child .If right child is greater j will point that.
-        if(arr[j+1]>arr[j])
+        //first we will compare the left child and right child .If right child is smaller j will point that.
+        if(arr[j+1]<arr[j])
         {
             j=j+1;
         }
-        if(arr[i]< arr[j] ){
+        if(arr[i] > arr[j] ){
 
             int temp =arr[i];
             arr[i]=arr[j];
