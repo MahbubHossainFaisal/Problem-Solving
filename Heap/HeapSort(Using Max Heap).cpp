@@ -28,7 +28,7 @@ void display(int arr[])
     }
 }
 
-//Time complexity of this insert function will be log2(n)
+//Time complexity of this insert function will be nlog(n)
 void Insert(int arr[],int n)
 {
     int temp,i=n;
@@ -43,8 +43,6 @@ void Insert(int arr[],int n)
 
 }
 
-//Time complexity of this delete function will be log2(n)
-22
 void Delete(int arr[],int n)
 {
 
