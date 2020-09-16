@@ -7,6 +7,7 @@ and compare with the first two elements and find where the third elements positi
 first three elements sorted.We will continue this till the last element of the array.At last
 all the elements of the array will be in sorted position.
 
+It is adaptive(if elements are sorted from the beginning) and stable.
 */
 
 

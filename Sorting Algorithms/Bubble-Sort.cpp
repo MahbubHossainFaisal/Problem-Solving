@@ -4,9 +4,10 @@ For n elements,n-1 passes will be held in bubble sort.
 Time complexity of any sorting algorithms is based on number of
 comparisons,Complexity of this algorithm is O(n2)
 if we run this for one pass of element,we will get the largest element in the last.
-    then if we run this for two passes of element,we will get the two largest elements.
-    So,it can be said that if we run this for k passes,we will get k largest elements in the last.
+then if we run this for two passes of element,we will get the two largest elements.
+So,it can be said that if we run this for k passes,we will get k largest elements in the last.
 
+It is adaptive(if elements are sorted from the beginning) and stable.
 */
 #include<bits/stdc++.h>
 using namespace std;
