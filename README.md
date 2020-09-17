@@ -1,6 +1,6 @@
 # DataStructures
-Here I will upload the data structures codes and
-problems that I have solved using data structures and algorithms.
+## Here I will upload the data structures codes and
+## problems that I have solved using data structures and algorithms.
 
 # Arrays
 1.Abstract data type array-ADT
