@@ -60,4 +60,25 @@ problems that I have solved using data structures and algorithms.
 21.Circular doubly linked list.
 22.Checking middle element in the linked list.
 
+# Stack
 
+1.Stack ADT.
+2.Stack using linked list.
+3.Evaluation of postfix using stack
+4.Infix to postfix using stack
+5.Paranthesis matching using stack
+
+# Queue
+
+1.Queue ADT
+2.Queue using linked list.
+3.Queue using stack
+4.Double ended queue(DEQueue)
+5.Circular queue.
+
+# Tree
+
+Introduction pdf
+1.Binary search tree.
+2.Binary tree.
+3.Deleting nodes in a binary tree.
