@@ -35,6 +35,8 @@ problems that I have solved using data structures and algorithms.
 7.Number of words in a string
 8.Checking palindrome
 9.Validating a string
+@Leetcode:
+1.Robot moving towards it's origin
 
 # Linked List
 1.Display a linked list.
