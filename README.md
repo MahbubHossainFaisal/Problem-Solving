@@ -83,3 +83,10 @@ Introduction pdf
 1.Binary search tree.
 2.Binary tree.
 3.Deleting nodes in a binary tree.
+
+# Hashing
+
+1.Chaining
+2.Linear Probing
+3.Quadratic probing.
+4.Double Hashing.
