@@ -101,7 +101,7 @@ class DoubleHash
             int i;
             for(i=0;i<Size;i++)
             {   if(hashtable[i]!=-1)
-                cout<<"index: "<<i<<" "<<"-->"<<hashtable[i]<<endl;
+                cout<<"index: "<<i<<" "<<":"<<hashtable[i]<<endl;
                 else
                     cout<<"index: "<<i<<" "<<endl;
             }
