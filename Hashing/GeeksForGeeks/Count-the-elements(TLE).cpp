@@ -3,8 +3,7 @@
 https://practice.geeksforgeeks.org/problems/count-the-elements/0/?category[]=Hash&problemStatus=unsolved&problemType=full&difficulty[]=0&page=1&sortBy=submissions&query=category[]HashproblemStatusunsolvedproblemTypefulldifficulty[]0page1sortBysubmissions
 */
 
-#include<iostream>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
@@ -15,50 +14,31 @@ int main()
     {
         int n;
         cin>>n;
-
         int a[n];
+        int b[n];
         for(int i=0;i<n;i++)
         {
             cin>>a[i];
         }
-
-        int b[n];
-         for(int i=0;i<n;i++)
+        for(int i=0;i<n;i++)
         {
             cin>>b[i];
         }
-       int Max=0;
-       for(int i=0;i<n;i++)
-       { if(Max<a[i])
-       Max=a[i];
-       }
-
-       int Hash[Max+1]={0};
-
-        for(int i=0;i<n;i++)
-        {
-            Hash[b[i]]++;
-        }
-        int D[Max+1]={0};
-        int sum=0;
-        for(int i=0;i<=Max;i++)
-        {
-            sum=sum+Hash[i];
-            D[i]=sum;
-        }
-
-
-        int q;
+        int q,Count=0;
         cin>>q;
         for(int i=1;i<=q;i++)
         {
             int x;
             cin>>x;
-            cout<<D[a[x]]<<endl;
+
+            for(int j=0;j<n;j++)
+            {
+                if(a[x]>b[j])
+                    Count++;
+            }
+            cout<<Count<<endl;
+            Count=0;
+
         }
-
-
-
-
     }
 }
