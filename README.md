@@ -90,3 +90,20 @@ Introduction pdf
 2.Linear Probing
 3.Quadratic probing.
 4.Double Hashing.
+## GeeksForGeeks
+1.Count different pairs with difference k
+2.Count the elements
+3.Find all pairs for a given sum
+4.Find non repeating character
+5.Frequency of limited range array
+6.Group anagrams together
+7.Largest fibonacci subsequence
+8.Non repeating element
+9.Numbers containing only 1,2,3
+10.Substrings with similar first and last character
+11.Sum of pairs over array of integers
+12.Check if array elements are contiguous
+
+## Codeforces
+1.Indian summer
+2.Tom Riddle's diary
