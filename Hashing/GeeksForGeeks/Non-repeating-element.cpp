@@ -1,3 +1,9 @@
+/*
+
+Problem link: https://practice.geeksforgeeks.org/problems/non-repeating-element/0/?category[]=Hash&problemStatus=unsolved&problemType=full&difficulty[]=0&page=1&sortBy=submissions&query=category[]HashproblemStatusunsolvedproblemTypefulldifficulty[]0page1sortBysubmissions
+
+*/
+
 #include<iostream>
 #include<unordered_map>
 using namespace std;
@@ -20,8 +26,8 @@ int main()
         m[A[i]]++;
        }
 
-     int i;
-       for(i=0;i<n;i++)
+        int i;
+       for( i=0;i<n;i++)
        {
            if(m[A[i]]==1)
            {
@@ -31,11 +37,8 @@ int main()
 
        }
        if(i==n)
-       {
-           cout<<"0"<<endl;
-       }
+       {cout<<"0"<<endl;}
 
-    return 0;
-
-    }
 }
+       return 0;
+    }
