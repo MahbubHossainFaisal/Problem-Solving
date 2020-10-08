@@ -1,11 +1,31 @@
+/*
+Breadth First Search:
+
+It is defined by two terms:
+1.Visiting (going to a particular vertex)
+2.Exploring (Visiting all the adjacent vertices of the particular vertex
+
+Working:
+Initialization:
+Select the vertex and first push it in the queue.
+Repeat:
+Take out vertex from queue front and explore it and push that vertex in a vector.
+while exploring insert all the new vertices to the queue which has not visited earlier.
+
+After exploring all the vertices of a particular vertex,take out the second vertex from the queue
+and start exploring it and also push that vertex in the vector.... and do the same till the last remaining vertex in the queue.
+
+Now print all the elements in the vector.
+
+
+
+
+*/
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
-
-
-
-
-
-
 
 
 int main()
