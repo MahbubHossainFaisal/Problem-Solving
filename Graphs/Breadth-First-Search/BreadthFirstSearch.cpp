@@ -32,13 +32,7 @@ int main()
 {
     int arr[8][8];
     int x,y;
-    for(int i=0;i<8;i++)
-    {
-        for(int j=1;j<8;j++)
-        {
-            arr[i][j]=0;
-        }
-    }
+   arr[8][8]={0};
 
     for(int i=1;i<=15;i++)
     {
@@ -52,11 +46,8 @@ int main()
    //BFS(arr,sv);
 
    int u,v;
-    int visited[8];
-    for(int i=0;i<8;i++)
-    {
-        visited[i]=0;
-    }
+    int visited[8]={0};
+
     queue <int> q;
     cout<<sv<<<<" ";
     visited[sv]=1;
