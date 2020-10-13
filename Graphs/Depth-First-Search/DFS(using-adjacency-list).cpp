@@ -19,7 +19,7 @@ public:
         adj[v].push_back(edge);
     }
 
-    void prepare(int v)
+    void prepare(int s)
     {
         bool *visited=new bool[v];
 
@@ -27,7 +27,7 @@ public:
         {
             visited[i]=false;
         }
-        DepthFirstSearch(v,visited);
+        DepthFirstSearch(s,visited);
     }
 
     void DepthFirstSearch(int v,bool visited[])

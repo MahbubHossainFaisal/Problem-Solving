@@ -1,86 +1,60 @@
+/*
+https://practice.geeksforgeeks.org/problems/count-the-paths/0/?category[]=DFS&problemType=full&difficulty[]=0&page=1&sortBy=submissions&query=category[]DFSproblemTypefulldifficulty[]0page1sortBysubmissions
+
+*/
 #include <bits/stdc++.h>
 using namespace std;
- int source,destination;
- int cnt=0;
-class DFS
+
+void DFS(vector <int> adj[],int s,int d,vector<bool>visited,int &cnt) //confused about the & before cnt
 {
-private:
-    int v;
-    list <int> *adj;
-public:
-    DFS(int v)
+    if(s==d)
     {
-        this->v=v;
-        adj=new list <int> [v];
+        cnt++;
+        return;
     }
 
-    void addEdge(int v,int edge)
+    for(auto i: adj[s])
     {
-        adj[v].push_back(edge);
-    }
-
-    void prepare(int v)
-    {
-        bool *visited=new bool[v];
-
-        for(int i=0;i<v;i++)
+        if(!visited[i])
         {
+            visited[i]=true;
+            DFS(adj,i,d,visited,cnt);
             visited[i]=false;
         }
-        DepthFirstSearch(source,visited);
-
     }
-
-    void DepthFirstSearch(int v,bool visited[])
-    {
-        if(v==destination)
-            {
-                return;
-            }
-
-        visited[v]=true;
-        cnt++;
-
-
-        for(auto i=adj[v].begin();i!=adj[v].end();++i)
-        {
-
-            if(!visited[*i])
-            {
-                DepthFirstSearch(*i,visited);
-            }
-        }
-    }
-};
+}
 
 
 int main()
 {
-
-    int vertex,edge;
     int t;
     cin>>t;
+
     while(t--)
     {
-        cin>>vertex>>edge;
-        int x,y;
-        DFS d(vertex);
-        for(int i=1;i<=edge;i++)
+        int V,E;
+        cin>>V>>E;
+
+        vector <int> adj[V];
+
+        for(int i=0;i<E;i++)
         {
-            cin>>x>>y;
-            d.addEdge(x,y);
+            int u,v;
+            cin>>u>>v;
+
+            adj[u].push_back(v);
         }
 
-        cin>>source>>destination;
-        d.prepare(vertex);
-        cout<<cnt<<endl;
-        cnt=0;
+        int s,d;
+        cin>>s>>d;
+        int cnt=0;
 
+        vector <bool> visited(V,false);
+
+        visited[s]=true;
+
+        DFS(adj,s,d,visited,cnt);
+        cout<<cnt<<endl;
 
     }
-
-    return 0;
-
-
 }
-
