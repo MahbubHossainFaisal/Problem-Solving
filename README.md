@@ -1,7 +1,9 @@
 # DataStructures
+
 ## problems that I have solved using data structures and algorithms.
 
 # Arrays
+
 1.Abstract data type array-ADT
 2.Array Deletion
 3.Get method ,Set method in Array.
@@ -25,6 +27,7 @@
 21.Types of 2D array.
 
 # Strings
+
 1.Changing uppercase to lower or viseversa
 2.Comparing strings
 3.Reversing a string
@@ -34,10 +37,13 @@
 7.Number of words in a string
 8.Checking palindrome
 9.Validating a string
-### * Leetcode:
+
+### \* Leetcode:
+
 1.Robot moving towards it's origin
 
 # Linked List
+
 1.Display a linked list.
 2.Couting nodes in a linked list.
 3.Sum of all elements in a linked list.
@@ -90,7 +96,9 @@ Introduction pdf
 2.Linear Probing
 3.Quadratic probing.
 4.Double Hashing.
+
 ## GeeksForGeeks
+
 1.Count different pairs with difference k
 2.Count the elements
 3.Find all pairs for a given sum
@@ -103,7 +111,30 @@ Introduction pdf
 10.Substrings with similar first and last character
 11.Sum of pairs over array of integers
 12.Check if array elements are contiguous
+13.Keypair
+14.Relative sorting
+15.Find the longest substring with k unique characters
 
 ## Codeforces
+
 1.Indian summer
 2.Tom Riddle's diary
+3.Boxes packing
+4.Make them odd
+5.Registration system
+6.Tshirt buying
+
+## Spoj
+
+1.Figureful
+
+# Graphs
+
+1.Breadth First Search using 2D matrix
+2.Breadth First Search using adjacency list
+3.Depth First Search using 2D matrix
+4.Depth First Search using adjacency list.
+
+## GeeksForGeeks
+
+1.Count the path
