@@ -15,51 +15,50 @@ using namespace std;
 *   V: number of vertices
 *   adj[]: representation of graph
 */
+
+bool cyclic(int i,vector <int> adj[],vector<bool> visited,vector <bool> Stack)
+{
+    visited[i]=true;
+    Stack[i]=true;
+
+    for(auto j=adj[i].begin(); j!=adj[i].end(); ++j)
+    {
+        if(!visited[*j] && cyclic(*j,adj,visited,Stack))
+        {
+            return true;
+        }
+        else
+        {
+            if(Stack[*j])
+            {
+                return true;
+            }
+        }
+    }
+    Stack[i]=false;
+    return false;
+}
+
 bool isCyclic(int V, vector<int> adj[])
 {
     // Your code here
 
-    vector <bool> visited(V,false);
-    vector <bool> track(V,0);
-    stack <int> st;
+   vector <bool> visited(V,false);
+   vector <bool> Stack(V,false);
 
-    st.push(0);
-    track[0]=true;
-    while(!st.empty())
-    {
-        int el=st.top();
+   for(int i=0;i<V;i++)
+   {
+       if(!visited[i])
+       {
+           if(cyclic(i,adj,visited,Stack))
+            return true;
+       }
+   }
+   return false;
 
-
-        if(visited[el])
-        {
-            if(track[el])
-            {
-                return 1;
-               break;
-            }
-            else {
-                continue;
-            }
-        }
-         st.pop();
-         track[el]=false;
-        visited[el]=true;
-
-        for(auto i=adj[el].begin(); i!=adj[el].end();++i)
-        {
-            if(!visited[*i])
-            {
-                st.push(*i);
-                track[*i]=1;
-            }
-        }
-
-    }
-    if(st.empty())
-    {
-      return 0;
-    }
 }
+
+
 
 // { Driver Code Starts.
 
