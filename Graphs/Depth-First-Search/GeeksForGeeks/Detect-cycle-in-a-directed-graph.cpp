@@ -16,26 +16,20 @@ using namespace std;
 *   adj[]: representation of graph
 */
 
-bool cyclic(int i,vector <int> adj[],vector<bool> visited,vector <bool> Stack)
+bool cyclic(int s,vector <int> adj[],int visited[],int Stack[])
 {
-    visited[i]=true;
-    Stack[i]=true;
+    visited[s]=1;
+    Stack[s]=1;
 
-    for(auto j=adj[i].begin(); j!=adj[i].end(); ++j)
+    for(int i=0;i<adj[s].size();i++ )
     {
-        if(!visited[*j] && cyclic(*j,adj,visited,Stack))
-        {
-            return true;
-        }
-        else
-        {
-            if(Stack[*j])
-            {
-                return true;
-            }
-        }
+        int j=adj[s][i];
+      if(!visited[j] && cyclic(j,adj,visited,Stack))
+        return true;
+      else if(Stack[j])
+        return true;
     }
-    Stack[i]=false;
+    Stack[s]=0;
     return false;
 }
 
@@ -43,8 +37,9 @@ bool isCyclic(int V, vector<int> adj[])
 {
     // Your code here
 
-   vector <bool> visited(V,false);
-   vector <bool> Stack(V,false);
+
+   int visited[V]={0};
+   int Stack[V]={0};
 
    for(int i=0;i<V;i++)
    {

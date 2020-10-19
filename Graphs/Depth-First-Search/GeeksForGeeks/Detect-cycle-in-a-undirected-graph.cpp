@@ -41,8 +41,11 @@ bool isCyclic(vector<int> g[], int V)
 
    for(int i=0;i<V;i++)
    {
-       if(cyclic(i,g,visited,-1))
+      if(!visited[i])
+      {
+        if(cyclic(i,g,visited,-1))
         return true;
+      }
    }
    return false;
 }
