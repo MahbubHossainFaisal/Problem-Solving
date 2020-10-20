@@ -1,4 +1,11 @@
 
+/*
+Problem link : https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1
+
+*/
+
+
+
 // { Driver Code Starts
 // Initial template for C++
 
@@ -7,7 +14,7 @@ using namespace std;
 
 #define MAX 5
 vector<string> printPath(int m[MAX][MAX], int n);
-vector <string> v;
+
 // Position this line where user code will be pasted.
 
 int main() {
@@ -34,45 +41,74 @@ int main() {
     return 0;
 }// } Driver Code Ends
 
-void way(int** solution,int n)
+
+// User function template for C++
+
+// m is the given matrix and n is the order of matrix
+// MAX is the upper limit of N ie 5
+
+bool safe(int row,int col,int m[][MAX],int n,bool visited[][MAX])
 {
-    for(int i=0;i<n;i++)
+    if(row==-1 || row==n || col==-1 || col==n || visited[row][col] || m[row][col]==0 )
     {
-        for(int j=0;j<n;j++)
-        {
-            string s=solution[i][j];
-            v.push_back(s);
-        }
+        return false;
     }
+    return true;
+
 }
 
-void maze(int m[MAX][MAX],int n,int** solution,int x,int y)
+void path(int row,int col,int m[][MAX],int n,string & paths,vector <string>& possiblePaths,bool visited[][MAX])
 {
-    if(x==n-1 && y==n-1)
-    {
-        solution[x][y]=1;
-        way(solution,n);
-        return;
-    }
-    if(x>=n || x<0 || y>=n || y<0 || m[x][y]==0 || m[x][y]==1)
+
+    if(safe(row,col,m,n,visited))
     {
         return;
     }
-    solution[x][y]=1;
-    maze(m,n,solution,x-1,y);
-    maze(m,n,solution,x+1,y);
-    maze(m,n,solution,x,y-1);
-    maze(m,n,solution,x,y+1);
-    solution[x][y]=0;
+    if(row==n-1 && col==n-1)
+    {
+        possiblePaths.push_back(paths);
+        return;
+    }
+    visited[row][col]=true;
+
+    if(safe(row,col,m,n,visited))
+    {
+        paths.push_back('D');
+        path(row+1,col,m,n,paths,possiblePaths,visited);
+        paths.pop_back();
+    }
+    if(safe(row,col,m,n,visited))
+    {
+        paths.push_back('L');
+        path(row,col-1,m,n,paths,possiblePaths,visited);
+        paths.pop_back();
+    }
+    if(safe(row,col,m,n,visited))
+    {
+        paths.push_back('R');
+        path(row,col+1,m,n,paths,possiblePaths,visited);
+        paths.pop_back();
+    }
+    if(safe(row,col,m,n,visited))
+    {
+        paths.push_back('D');
+        path(row-1,col,m,n,paths,possiblePaths,visited);
+        paths.pop_back();
+    }
+
+    visited[row][col]=false;
+
+
 }
 
 vector<string> printPath(int m[MAX][MAX], int n) {
     // Your code goes here
-    int ** solution =new int*[n];
-    for(int i=0;i<n;i++)
-    {
-        solution[i]=new int*[n];
-    }
-    maze(m,n,solution,0,0);
-    return v;
+
+    vector<string> possiblePaths;
+    string paths;
+    bool visited[n][MAX]={false};
+
+    path(0,0,m,n,paths,possiblePaths,visited);
+
+    return possiblePaths;
 }
