@@ -57,13 +57,11 @@ bool safe(int row,int col,int m[][MAX],int n,bool visited[][MAX])
 
 }
 
-void path(int row,int col,int m[][MAX],int n,string & paths,vector <string>& possiblePaths,bool visited[][MAX])
+void path(int row,int col,int m[][MAX],int n,string& paths,vector <string>& possiblePaths,bool visited[][MAX])
 {
 
-    if(safe(row,col,m,n,visited))
-    {
+    if (row == -1 || row == n || col == -1  || col == n || visited[row][col] || m[row][col] == 0)
         return;
-    }
     if(row==n-1 && col==n-1)
     {
         possiblePaths.push_back(paths);
@@ -71,27 +69,27 @@ void path(int row,int col,int m[][MAX],int n,string & paths,vector <string>& pos
     }
     visited[row][col]=true;
 
-    if(safe(row,col,m,n,visited))
+    if(safe(row+1,col,m,n,visited))
     {
         paths.push_back('D');
         path(row+1,col,m,n,paths,possiblePaths,visited);
         paths.pop_back();
     }
-    if(safe(row,col,m,n,visited))
+    if(safe(row,col-1,m,n,visited))
     {
         paths.push_back('L');
         path(row,col-1,m,n,paths,possiblePaths,visited);
         paths.pop_back();
     }
-    if(safe(row,col,m,n,visited))
+    if(safe(row,col+1,m,n,visited))
     {
         paths.push_back('R');
         path(row,col+1,m,n,paths,possiblePaths,visited);
         paths.pop_back();
     }
-    if(safe(row,col,m,n,visited))
+    if(safe(row-1,col,m,n,visited))
     {
-        paths.push_back('D');
+        paths.push_back('U');
         path(row-1,col,m,n,paths,possiblePaths,visited);
         paths.pop_back();
     }
