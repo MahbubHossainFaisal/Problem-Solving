@@ -1,0 +1,37 @@
+Token       Type
+int        Keyword
+1c         Invalid
+=         Operator
+2         Numeric Constant
+;         End of line symbol
+char        Keyword
+a        Valid identifier
+=         Operator
+'s'       character
+;         End of line symbol
+float        Keyword
+act        Valid identifier
+=         Operator
+2.4         Numeric Constant
+;         End of line symbol
+act        Valid identifier
++=         Operator
+1         Numeric Constant
+;         End of line symbol
+if        Keyword
+(       Bracket
+a        Valid identifier
+>         Operator
+b        Valid identifier
+)       Bracket
+return        Keyword
+a        Valid identifier
+;         End of line symbol
+int        Keyword
+arr        Valid identifier
+[20]      Array size
+=         Operator
+{       Bracket
+0         Numeric Constant
+}       Bracket
+;         End of line symbol

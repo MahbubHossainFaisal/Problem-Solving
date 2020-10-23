@@ -1,0 +1,6 @@
+int 1c = 2 ; 
+char a = 's' ;
+float act = 2.4 ;
+act += 1 ;
+if ( a > b ) return a ;
+int arr [20] = { 0 } ;
