@@ -1,20 +1,32 @@
-
 /*
-Problem link: https://practice.geeksforgeeks.org/problems/steps-by-knight/0
+
+problem link:https://practice.geeksforgeeks.org/problems/steps-by-knight/0
+
 */
 
 #include <bits/stdc++.h>
 using namespace std;
-int target;
+
+#define S 21
+int moves = 8;
 int dx[]={-2,-1,1,2,2,1,-1,-2};
 int dy[]={1,2,2,1,-1,-2,-2,-1};
+int visited[S][S],dist[S][S];
 
 int targetX,targetY;
 
-int m=target+1;
+bool isValid(int x,int y,int n)
+{
+    if(x<0 || x>n || y<0 ||  y>n) return false;
 
 
-int BFS(int x,int y,int n,int visited[][m],int dist[][m])
+    if(visited[x][y]==1) return false;
+
+    return true;
+}
+
+
+int BFS(int x,int y,int n)
 {
     queue<pair<int,int>> q;
     dist[x][y]=0;
@@ -30,9 +42,9 @@ int BFS(int x,int y,int n,int visited[][m],int dist[][m])
         int cury=q.front().second;
         q.pop();
 
-       for(int i=0;i<n;i++)
+       for(int i=0;i<moves;i++)
        {
-           if(isValid(curx+dx[i],cury+dy[i],n,visited))
+           if(isValid(curx+dx[i],cury+dy[i],n))
            {
                x=curx+dx[i];
                y=cury+dy[i];
@@ -47,15 +59,7 @@ int BFS(int x,int y,int n,int visited[][m],int dist[][m])
     }
 }
 
-bool isValid(int x,int y,int n,int visited[][])
-{
-    if(x<0 || x>n || y<0 ||  y>n) return false;
 
-
-    if(visited[x][y]==1) return false;
-
-    return true;
-}
 
 int main()
 {
@@ -65,9 +69,7 @@ int main()
     {
         int n;
         cin>>n;
-        n=target;
-        int visited[n+1][n+1];
-        int dist[n+1][n+1];
+
 
         for(int i=1;i<=n;i++)
         {
@@ -82,6 +84,6 @@ int main()
         cin>>targetX>>targetY;
 
 
-        cout<<BFS(x,y,n,visited,dist)<<endl;
+        cout<<BFS(x,y,n)<<endl;
     }
 }
