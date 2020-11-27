@@ -3,6 +3,11 @@ Declaration of Priority queue of min heap:
 
 priority_queue <Type, vector<Type>, ComparisonType > min_heap;
 
+if say, data are: 4,3,2,7,5,6
+
+    if we push them in the min heap priority queue , they will store like this : 2,3,4,5,6,7
+    where 2 will be queue top().
+
 */
 
 #include <bits/stdc++.h>
