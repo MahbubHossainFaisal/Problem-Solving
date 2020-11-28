@@ -18,31 +18,19 @@ int main()
         {
             cin>>a[i];
         }
-        sort(a,a+n);
+       int minimum = *min_element(a,a+n);
 
         i=0;
         j=1;
         int Count=0;
-        while(i!=n-1)
-        {
-            int value = a[j]-a[i];
-           // cout<<"Value is: "<<value<<endl;
-            if(value>k){
-                int res=value-k;
-                a[j]=res;
-                Count++;
-            }
-            if(value<= k) {
-                j++;
-            }
+       for(i=1;i<n;i++)
+       {
+           int value = a[i]-minimum;
 
-            if(j==n)
-            {
-                 i++;
-                j=i+1;
-
-            }
-        }
+           if(value > k){
+            Count+=value-k;
+           }
+       }
 
         cout<<Count<<endl;
 
