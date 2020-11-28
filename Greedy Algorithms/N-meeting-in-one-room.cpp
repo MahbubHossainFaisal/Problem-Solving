@@ -16,23 +16,26 @@ void maxMeetings(int start[],int end[],int n)
         v.push_back(make_pair(start[i],end[i]));
         store[{start[i],end[i]}] = i;
     }
+    /*
     cout<<"Map has become: "<<endl;
     for(int i =0; i<n;i++)
     {
         cout<<store[{v[i].first,v[i].second}]<<endl;
 
     }
+    */
 
     sort(v.begin(),v.end(),compare);
-    cout<<"After sorting vector is: "<<endl;
+   /* cout<<"After sorting vector is: "<<endl;
 
     for(int i =0; i<n;i++)
     {
         cout<<v[i].first<<"---->"<<v[i].second<<endl;
 
     }
-
+    */
     cout<<store[{v[0].first,v[0].second}]+1<<" ";
+
     int  j=1;
    for(int i=1;i<n;i++)
    {
@@ -41,7 +44,7 @@ void maxMeetings(int start[],int end[],int n)
        if(v[i].first>v[j-1].second)
        {
            cout<<store[{v[i].first,v[i].second}]+1<<" ";
-           j++;
+           j=i;
        }
 
 
