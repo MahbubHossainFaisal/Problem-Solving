@@ -1,15 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int fib(int n,int *arr)
+int fib(int n,int arr[])
 {
-    if(n==0 || n==1){
-        return 1;
-    }
-    if(arr[n]>0){
+
+    if(n==0) return 0;
+      if(n==1)  return 1;
+
+    if(arr[n]!=0){
         return arr[n];
     }
-    long long int result = fib(n-1,arr) + fib(n-2,arr);
+     int result = fib(n-1,arr) + fib(n-2,arr);
     arr[n]=result;
     return result;
 
@@ -35,7 +36,7 @@ int main()
     int n;
     cin>>n;
 
-     int arr[n+1]={0};
+    int arr[n+1]={0};
 
 
     cout<<fib(n,arr);
