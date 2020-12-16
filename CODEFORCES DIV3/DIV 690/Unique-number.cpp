@@ -14,36 +14,38 @@ int main()
     {
         int x;
         cin>>x;
-
-        int a=0;
-        int b=x;
-        int cnt=0;
-        int res;
-        int minimum = INT_MAX;
-        for(int i=1; i<=x/2;i++ )
+    int store[] = {9,8,7,6,5,4,3,2,1};
+        int i=0;
+    int cal=x;
+    vector <int> v;
+    if(cal>=0 && cal <=9)
         {
-            if(b<=10)
-            {
-                cout<<b<<endl;
+            v.push_back(cal);
+        }
+    else if(cal>=10 && cal <=45){
+        while(cal!=0)
+        {
+            if(cal < store[i]){
+                v.push_back(cal);
                 break;
             }
-            if(b>10)
-            {
-                int y=b;
-                while(y!=0)
-                {
-                    cnt++;
-                    y=y/10;
-                }
-                if(cnt==2){
-                    res=a*100 + b;
-                    if(res<minimum) minimum=res;
-                }
-                if(cnt==1) {
+            cal= cal-store[i];
+            v.push_back(store[i]);
+            i++;
 
-                }
-            }
+
         }
+    }
+    else {
+        v.push_back(-1);
+    }
+    reverse(v.begin(),v.end());
+
+    for(auto i: v)
+    {
+        cout<<i;
+    }
+    cout<<endl;
 
     }
 }
