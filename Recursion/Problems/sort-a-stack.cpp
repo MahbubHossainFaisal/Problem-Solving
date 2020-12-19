@@ -4,7 +4,7 @@ using namespace std;
 
 void insert_in_stack(stack <int> &st,int temp)
 {
-    if(st.size()==0 || st.top()> temp)
+    if(st.size()==0 || st.top()<= temp)
     {
         st.push(temp);
         return;
