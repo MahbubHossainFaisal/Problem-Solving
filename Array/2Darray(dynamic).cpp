@@ -39,6 +39,11 @@ int main()
             }
         }
     }
+
+    for (int i=0;i<n;i++){
+        delete arr[i];
+    }
+    delete[] arr; //this is how to delete 2d array.
     return 0;
 
 }
