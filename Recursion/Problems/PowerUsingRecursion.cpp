@@ -1,22 +1,20 @@
-// In terms of power of a number
-#include <iostream>
+
+#include <bits/stdc++.h>
 using namespace std;
 
-int power(int m,int n)
+int power(int n,int x)
 {
-    if(m==0 || n==0)
-        return 1;
-    else
-    {
-        return power(m,n-1)*m;
-    }
-
+    if(x==1)
+        return n;
+    int smallerInput=power(n,x-1);
+    return n*smallerInput;
 }
 
 int main()
 {
-    int m,n;
-    cin>>m>>n;
-    int result =power(m,n);
-    cout<<result;
+    int n,x;
+    cin>>n>>x;
+   cout<< power(n,x);
+   return 0;
+
 }

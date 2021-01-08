@@ -3,6 +3,7 @@ using namespace std;
 
 int fact(int n)
 {
+    cout<<n<<endl;
     if(n==0)
     {
         return 1; //This can't be return 0 because while n will be decreasing and decreased to
