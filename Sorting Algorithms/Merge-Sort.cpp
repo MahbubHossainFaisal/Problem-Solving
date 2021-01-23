@@ -35,74 +35,87 @@ extra space.(it uses an extra array,then for recursion purpose it uses the stack
 #include<iostream>
 using namespace std;
 
-void Merge(int arr[],int low,int mid ,int high)
+void Merge(int arr[],int low,int mid,int high,int sz)
 {
+    int *brr=new int[sz];
     int i=low,j=mid+1,k=low;
-    int brr[100];
 
-    while(i<=mid && j<=high){
-        if(arr[i]<arr[j]){
+    while(i<=mid && j<=high)
+    {
+        if(arr[i]<arr[j])
+        {
             brr[k++]=arr[i++];
-        }
-        else {
+        } else {
+
             brr[k++]=arr[j++];
         }
+
     }
 
-    for(;i<=mid;i++){
+    for(;i<=mid;i++)
+    {
         brr[k++]=arr[i];
     }
-    for(;j<=high; j++){
+    for(;j<=high;j++)
+    {
         brr[k++]=arr[j];
     }
 
-    for(i=low;i<=high;i++){
+    for(i=low;i<=high;i++)
+    {
         arr[i]=brr[i];
     }
 }
 
 
-void MergeSort(int arr[],int low,int high)
+void mergeSort(int arr[],int low,int high,int sz)
 {
-    int mid;
-    if(low<high){
-        mid=(low+high)/2;
-        MergeSort(arr,low,mid);
-        MergeSort(arr,mid+1,high);
-        Merge(arr,low,mid,high);
+    if(sz==1 || low>high){
+        return;
     }
+    int mid;
+    if(low<high)
+    {
+        mid=(low+high)/2;
+
+        mergeSort(arr,low,mid,sz);
+        mergeSort(arr,mid+1,high,sz);
+        Merge(arr,low,mid,high,sz);
+    }
+
 }
-
-
 
 int main()
 {
-    int arr[]={32,23,1,4,2,6,15,35,48,64,33,87};
-    int length=sizeof(arr)/sizeof(arr[0]);
-    MergeSort(arr,0,11);
-    cout<<"After Merge Sort: "<<endl;
-    for(int i=0;i<length;i++)
+
+    int n;
+    cin>>n;
+
+    int *arr=new int[n];
+
+    for(int i=0;i<n;i++)
     {
-
-        cout<<arr[i]<<" ";
-
+        cin>>arr[i];
     }
+
+    cout<<"Before merge sort: "<<endl;
+
+    for(int i=0;i<n;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+
+    mergeSort(arr,0,n-1,n);
+
+    for(int i=0;i<n;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+
+    return 0;
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
