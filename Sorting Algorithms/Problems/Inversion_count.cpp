@@ -20,10 +20,10 @@ long long int Merge(ll arr[],ll low, ll mid,ll high)
     while(i<mid && j<=high)
     {
         if(arr[i]<=arr[j]){
-            arr[i++]=arr[k++];
+           temp[k++]=arr[i++];
         }
         else {
-            arr[i++]=arr[k++];
+            temp[k++]=arr[j++];
             Count+= mid-i;
         }
     }
@@ -32,12 +32,12 @@ long long int Merge(ll arr[],ll low, ll mid,ll high)
     }
     while(j<=high)
     {
-        temp[k++]=arr[k++];
+        temp[k++]=arr[j++];
     }
 
-    for(i=low;i<=high;i++)
+    for(i=low,k=0;i<=high;i++,k++)
     {
-        arr[i]=temp[i];
+        arr[i]=temp[k];
     }
     return Count;
 
