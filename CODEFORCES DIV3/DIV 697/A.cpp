@@ -12,28 +12,27 @@ int main()
     {
         ll n;
         cin>>n;
-        ll i=3;
-        ll j=n/2;
-        if(n==2 || n==4)
-        {
-            cout<<"NO"<<endl;
-        }
-        else if(n==3 || n==5)
+
+        if(n%2!=0)
         {
             cout<<"YES"<<endl;
         }
-        else if(n>5)
+        else
         {
-            for(i;i<=j;i+=2)
+            while(n>=1)
             {
-                if(n%i==0)
+
+                if(n%2!=0 && n>1)
                 {
                     cout<<"YES"<<endl;
+                    break;
                 }
-            }
-            if(i>=j)
-            {
-                cout<<"NO"<<endl;
+                else if(n==1)
+                {
+                    cout<<"NO"<<endl;
+                    break;
+                }
+                n=n/2;
             }
         }
     }
