@@ -73,35 +73,33 @@ using namespace std;
 
 int Partition(int arr[],int low,int high)
 {
-    int pivot=arr[low];
-    int i=low;
-    int j=high;
+    int i=low,j=high;
+    int pivot = arr[low];
 
     do {
         do{
             i++;
         }while(arr[i]<=pivot);
+
         do{
             j--;
         }while(arr[j]>pivot);
 
         if(i<j){
-            int temp=arr[i];
-            arr[i]=arr[j];
-            arr[j]=temp;
+            swap(arr[i],arr[j]);
         }
     } while(i<j);
 
-    int temp=arr[low];
-            arr[low]=arr[j];
-            arr[j]=temp;
-        return j;
+    swap(arr[low],arr[j]);
+    return j;
 }
 
 void QuickSort(int arr[],int low,int high)
 {
     int j;
-    if(low<high){
+
+    if(low<high)
+    {
         j=Partition(arr,low,high);
         QuickSort(arr,low,j);
         QuickSort(arr,j+1,high);
