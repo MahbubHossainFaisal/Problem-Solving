@@ -27,6 +27,10 @@ class StudentInfo {
         cout<<"Name: "<<this->name<<" Age: "<<this->age<<endl;
     }
 
+    ~StudentInfo(){
+        cout<<"Destructuring done"<<endl;
+    }
+
 
 };
 

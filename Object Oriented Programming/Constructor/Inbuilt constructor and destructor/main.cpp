@@ -23,6 +23,10 @@ int main()
     cout<<"s3: "<<endl;
     s3->display();
 
+    //for static objects destructuring is done with destructure method call
+    //but for dynamic allocated object we have to call the delete method.
+    delete s3; // this need to be called to delete a dynamic object.
+
 
 
 }
