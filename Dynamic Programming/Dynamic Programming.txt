@@ -1,0 +1,9 @@
+Dynamic programming approach -------->
+1.We first devide the problem into subproblems
+2.Then the subproblems has many common works.
+3.When we find common works we will store that.
+4.So,when we we find repeatation we can use the stored information.
+5.This will make programme work more faster because we don't have to recalculate anything again
+that we had calculated before.
+
+This is dynamic programming.
