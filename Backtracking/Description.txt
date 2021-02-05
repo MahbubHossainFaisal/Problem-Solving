@@ -1,0 +1,9 @@
+Backtracking approach------>
+
+1.Place yourself on start point
+2.Explore all the possible paths from starting point
+3.Insert your element at any correct possible position 
+4.Once inserted move on to the smaller problems
+5.Once you reach all the paths from one point but can't insert the element,then backtrack
+	to your previous point
+6.Once you reach all the point (base case),print the solution.
