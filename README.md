@@ -33,6 +33,8 @@
 3.Reversing a string
 4.Checking anagram
 5.Finding duplicates in a string(Bitwise operation)
+
+Many More.........
 6.Finding duplicates in a string(Hash table)
 7.Number of words in a string
 8.Checking palindrome
@@ -138,3 +140,6 @@ Introduction pdf
 ## GeeksForGeeks
 
 1.Count the path
+
+
+## Many More
