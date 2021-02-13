@@ -7,17 +7,12 @@ int Count(int si,int sj,int ei,int ej,int **input,int **output ){
   if(si==ei && sj==ej ){
     return input[ei][ej];
   }
-
   if(si>ei || sj>ej){
     return INT_MAX;
   }
-
   if(output[si][sj]>-1){
     return output[si][sj];
   }
-
-  
-
   int path1 = Count(si+1,sj,ei,ej,input,output);
   int path2 = Count(si+1,sj+1,ei,ej,input,output);
   int path3 = Count(si,sj+1,ei,ej,input,output);
