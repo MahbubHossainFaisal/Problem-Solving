@@ -3,6 +3,37 @@ using namespace std;
 
 #include "TreeClass.h";
 
+
+TreeNode<int>* takeInputLevelWise()
+{
+    int rootData;
+    cout<<"Enter Root data: "<<endl;
+    cin>>rootData;
+
+    TreeNode<int>* root = new TreeNode<int>(rootData);
+    queue<TreeNode<int>*> pendingNodes;
+    pendingNodes.push(root);
+    while(!pendingNodes.empty()){
+        TreeNode<int>* Front = pendingNodes.front();
+        pendingNodes.pop();
+        int numOfChidren;
+        cout<<"Enter the number of children of "<<Front->data<<endl;
+        cin>>numOfChidren;
+
+        for(int i=0;i<numOfChidren;i++){
+            int childData;
+            cout<<"Enter the "<<i+1<<"th child of "<<Front->data<<endl;
+            cin>>childData;
+
+            TreeNode<int>* child = new TreeNode<int>(childData);
+            Front->children.push_back(child);
+            pendingNodes.push(child);
+
+        }
+    }
+    return root;
+}
+
 TreeNode<int>* takeInput(){
   int rootData;
   cout<<"Enter data: "<<endl;
@@ -39,6 +70,6 @@ void printTree( TreeNode<int>* root){
 }
 
 int main(){
- TreeNode<int>* root= takeInput();
+ TreeNode<int>* root= takeInputLevelWise();
  printTree(root);
 }
