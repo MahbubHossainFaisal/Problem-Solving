@@ -1,0 +1,33 @@
+class Solution {
+public:
+    pair<int,int> heightDiameter(TreeNode* root){
+        if(root == NULL){
+            pair<int,int> p ;
+            p.first = 0;
+            p.second = 0;
+            return p;
+        }
+        
+        pair<int,int> leftSubTree = heightDiameter(root->left);
+        pair<int,int> rightSubTree = heightDiameter(root->right);
+        
+        int lheight = leftSubTree.first;
+        int rheight = rightSubTree.first;
+        int ldiameter = leftSubTree.second;
+        int rdiameter = rightSubTree.second;
+        
+        int height = 1 + max(lheight,rheight);
+        int diameter = max(lheight+rheight,max(ldiameter,rdiameter));
+        pair<int,int> result ;
+        result.first = height;
+        result.second = diameter;
+        return result;
+            
+        
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+      pair<int,int> p =  heightDiameter(root);
+      int ans = p.second;
+         return ans;
+    }
+};
