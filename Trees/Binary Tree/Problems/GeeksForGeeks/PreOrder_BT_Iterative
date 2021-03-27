@@ -1,0 +1,32 @@
+vector <int> preorder(Node* root)
+{
+  
+  vector<int> pre;
+  
+  if(root == NULL){
+      return pre;
+  }
+  
+  stack <Node*> s;
+  s.push(root);
+ 
+  
+  while(!s.empty()){
+      root = s.top();
+      pre.push_back(root->data);
+       s.pop(); 
+      if(root->right!= NULL){
+          s.push(root->right);
+          
+      }
+      if(root->left !=NULL){
+          s.push(root->left);
+      }
+      
+     
+      
+      
+      
+  }
+  return pre;
+}
