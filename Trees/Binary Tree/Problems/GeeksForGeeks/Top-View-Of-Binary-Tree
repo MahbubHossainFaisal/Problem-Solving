@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -68,3 +69,47 @@ int main()
     CaseCheck();
     return 0;
 }
+=======
+vector<int> topView(struct Node *root)
+{
+    vector <int> ans;
+   if(root == NULL){
+       return ans;
+   }
+   
+   map<int,vector<int>> m;
+   int hd =0;
+   queue<pair<Node* , int>> q;
+    q.push(make_pair(root,hd));
+    
+    while(!q.empty()){
+        pair<Node*,int> temp = q.front();
+        q.pop();
+        Node* node = temp.first;
+        hd = temp.second;
+        
+        m[hd].push_back(node->data);
+        
+        if(node->left){
+            q.push(make_pair(node->left,hd-1));
+        }
+        if(node->right){
+            q.push(make_pair(node->right,hd+1));
+        }
+    }
+    
+    
+    map<int,vector<int>> :: iterator it;
+    
+    for(it=m.begin(); it!=m.end();it++){
+        
+         for(int i=0;i<it->second.size();i++){
+             ans.push_back(it->second[i]);
+             break;
+         }
+    }
+   
+    return ans;
+   
+}
+>>>>>>> dd3315e4c7c383fbb05c83376eb6909ca018f082
