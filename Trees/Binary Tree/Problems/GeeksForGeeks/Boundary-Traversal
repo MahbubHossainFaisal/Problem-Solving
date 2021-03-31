@@ -1,0 +1,49 @@
+void leftNodes(Node* node, vector<int>& ans){
+    if(!node){
+        return;
+    }
+    if(node->left){
+        ans.push_back(node->data);
+        leftNodes(node->left,ans);
+    }
+    else if(node->right){
+        ans.push_back(node->data);
+        leftNodes(node->right,ans);
+    }
+    
+}
+void leafNodes(Node* node,vector<int>& ans){
+    if(!node) return;
+    
+    leafNodes(node->left,ans);
+    if(node->left == NULL && node->right == NULL){
+        ans.push_back(node->data);
+    }
+    leafNodes(node->right,ans);
+}
+
+void rightNodes(Node* node,vector<int>& ans){
+    if(!node) return;
+    
+    if(node->right){
+        rightNodes(node->right,ans);
+        ans.push_back(node->data);
+    }
+    else if(node->left){
+        rightNodes(node->left,ans);
+        ans.push_back(node->data);
+    }
+}
+vector <int> printBoundary(Node *root)
+{
+     vector <int> ans ;
+     if(!root){
+         return ans;
+     }
+     ans.push_back(root->data);
+     leftNodes(root->left,ans);
+     leafNodes(root,ans);
+     rightNodes(root->right,ans);
+     
+     return ans;
+}
