@@ -1,0 +1,22 @@
+class Solution {
+public:
+int balanced = 1;
+    int check(TreeNode* root){
+        if(root == NULL){
+            return 0;
+        }
+        
+        int leftSubTree = check(root->left);
+        int rightSubTree = check(root->right);
+        
+        if(abs(leftSubTree-rightSubTree) > 1) balanced =0;
+        
+        return max(leftSubTree,rightSubTree)+1;
+        
+    }
+    bool isBalanced(TreeNode* root) {
+        balanced =1;
+        check(root);
+        return balanced;
+    }
+};
