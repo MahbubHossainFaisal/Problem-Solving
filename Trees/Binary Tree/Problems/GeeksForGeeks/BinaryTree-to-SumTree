@@ -1,0 +1,23 @@
+
+
+
+int solution(Node* root){
+
+	if(!root) return 0;
+
+	int previousValue = root->data;
+
+	root->data = solution(root->left) + solution(root->right);
+
+	return root->data+previousValue;
+
+}
+
+
+
+
+
+void toSumTree(Node* root){
+	
+	solution(root);
+}
