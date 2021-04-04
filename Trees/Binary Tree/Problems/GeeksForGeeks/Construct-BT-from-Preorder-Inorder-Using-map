@@ -1,0 +1,30 @@
+int id =0;
+unordered_map<int,int> m;
+Node* buildTreeHelper(int in[], int pre[],int lowerBound,int upperBound)
+{
+    if(lowerBound > upperBound){
+        return NULL;
+    }
+
+    Node* node = new Node(pre[id]);
+    ++id;
+    if(lowerBound == upperBound){
+        return node;
+    }
+    int mid = m[node->data];
+    node->left = buildTreeHelper(in,pre,lowerBound,mid-1);
+    node->right = buildTreeHelper(in,pre,mid+1,upperBound);
+    
+    return node;
+}
+Node* buildTree(int in[],int pre[], int n)
+{
+    id =0;
+    m.clear();
+    for(int i=0;i<n;i++){
+        m[in[i]]=i;
+    }
+   Node* root = buildTreeHelper(in,pre,0,n-1);
+   return root;
+
+}
