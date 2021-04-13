@@ -1,0 +1,19 @@
+class Solution{   
+public:
+    int getPairsCount(int arr[], int n, int k) {
+      unordered_map<int,int> m;
+      
+      for(int i=0;i<n;i++) m[arr[i]]++;
+      
+      int cnt =0;
+      for(int i=0;i<n;i++){
+          cnt += m[k-arr[i]];
+          
+          if(k-arr[i] == arr[i]){
+              cnt--;
+          }
+      }
+      return cnt/2;
+    }
+    
+};
