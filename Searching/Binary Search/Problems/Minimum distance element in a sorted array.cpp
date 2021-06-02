@@ -19,8 +19,8 @@ int BinarySearch(int arr[],int n,int x){
             end=mid-1;
         }
     }
-    int pos1 = abs(start-x);
-    int pos2 = abs(end-x);
+    int pos1 = abs(arr[start]-x);
+    int pos2 = abs(arr[end]-x);
     if(pos1<pos2){
         return pos1;
     }
