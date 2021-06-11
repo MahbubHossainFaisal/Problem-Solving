@@ -1,83 +1,73 @@
-/*
-Problem link: https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
 
-*/
-
-// { Driver Code Starts
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
 
-
-/*  Function to check if the given graph contains cycle
-*   V: number of vertices
-*   adj[]: representation of graph
-*/
-
-bool cyclic(int s,vector <int> adj[],int visited[],int Stack[])
+class Solution
 {
-    visited[s]=1;
-    Stack[s]=1;
-
-    for(int i=0;i<adj[s].size();i++ )
-    {
-        int j=adj[s][i];
-      if(!visited[j] && cyclic(j,adj,visited,Stack))
-        return true;
-      else if(Stack[j])
-        return true;
-    }
-    Stack[s]=0;
-    return false;
-}
-
-bool isCyclic(int V, vector<int> adj[])
-{
-    // Your code here
-
-
-   int visited[V]={0};
-   int Stack[V]={0};
-
-   for(int i=0;i<V;i++)
-   {
-       if(!visited[i])
-       {
-           if(cyclic(i,adj,visited,Stack))
-            return true;
-       }
-   }
-   return false;
-
-}
-
-
-
-// { Driver Code Starts.
-
-int main() {
-
-	int t;
-	cin >> t;
-
-	while(t--){
-
-	    int v, e;
-	    cin >> v >> e;
-
-	    vector<int> adj[v];
-
-	    for(int i =0;i<e;i++){
-	        int u, v;
-	        cin >> u >> v;
-	        adj[u].push_back(v);
+    public:
+	bool detect(vector<int>adj[],int vis[],int anc[],int n,int sv){
+	    vis[sv] = 1;
+	    anc[sv]= 1;
+	    
+	    for(auto node: adj[sv]){
+	        if(!vis[node]){
+	            if(detect(adj,vis,anc,n,node)){
+	                return true;
+	            }
+	        }
+	        else if(anc[node]){
+	            return true;
+	        }
 	    }
-
-	    cout << isCyclic(v, adj) << endl;
-
+	    anc[sv]= 0;
+	    return false;
 	}
+	bool isCyclic(int V, vector<int> adj[]) 
+	{
+	   	// code here
+	   	int vis[V] = {0};
+	   	int anc[V]={0};
+	   	
+	   	for(int i=0;i<V; i++){
+	   	    if(detect(adj,vis,anc,V,i)){
+	   	        return true;
+	   	    }
+	   	    
+	   	}
+	   	
+	   	return false;
+	}
+};
 
-	return 0;
-}  // } Driver Code Ends
+
+
+
+int main()
+{
+    
+    int t;
+    cin >> t;
+    while(t--)
+    {
+    	int V, E;
+    	cin >> V >> E;
+
+    	vector<int> adj[V];
+
+    	for(int i = 0; i < E; i++)
+    	{
+    		int u, v;
+    		cin >> u >> v;
+    		adj[u].push_back(v);
+    	}
+
+    	Solution obj;
+    	cout << obj.isCyclic(V, adj) << "\n";
+    }
+
+    return 0;
+}
+
+ 
