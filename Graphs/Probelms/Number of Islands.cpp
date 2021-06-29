@@ -16,9 +16,8 @@ public:
     int numIslands(vector<vector<char>>& grid) {
         int row = grid.size();
         int col = grid[0].size();
-        
+
        vector<vector<bool>> vis(row,vector<bool>(col,false));
-        
         
         int cnt=0;
         
@@ -27,10 +26,12 @@ public:
                if(!vis[i][j] && grid[i][j]=='1'){
                    cnt++;
                    dfs(i,j,grid,vis,row,col);
-                  
                }
            }
+           
        }
         return cnt;
     }
 };
+
+
