@@ -7,7 +7,7 @@ using namespace std;
 class Solution{   
 public:
     int isSubsetSum(int N, int arr[], int sum){
-   
+        // code here 
         int matrix[N+1][sum+1];
         for(int i=0;i<=N;i++){
             matrix[i][0] = 1;
@@ -31,6 +31,21 @@ public:
         
         return matrix[N][sum];
     }
+
+    int solve(int N, int arr[],int diff){
+        int range=0;
+
+        for(int i=0; i<N; i++){
+            range+=arr[i];
+        }
+
+        int sum = (diff+range)/2;
+
+       int res = isSubsetSum(N,arr,sum);
+       return res;
+
+
+    }
 };
 
 
@@ -40,16 +55,16 @@ int main()
     cin>>t;
     while(t--)
     {
-        int N, sum;
+        int N,diff;
         cin >> N;
         int arr[N];
         for(int i = 0; i < N; i++){
             cin >> arr[i];
         }
-        cin >> sum;
+       cin>>diff;
         
         Solution ob;
-        cout << ob.isSubsetSum(N, arr, sum) << endl;
+        cout << ob.solve(N, arr,diff) << endl;
     }
     return 0; 
 } 
