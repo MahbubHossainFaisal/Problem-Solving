@@ -25,8 +25,8 @@ public:
         numerator = numerator/gcd;
         denominator = denominator/gcd;
     }
-
-    void add(Fraction f2){
+    //after addition f2 will be updated in main function
+    void add(Fraction const &f2){
         int lcm = denominator* f2.denominator;
         int x = lcm/denominator;
         int y = lcm/f2.denominator;
@@ -38,6 +38,18 @@ public:
 
         simplifyFraction();
     }
+
+    //after multiplication f1 will be updated in main function
+    void multiply(Fraction const &f2){
+        //this is changing the value of f1 numerator
+        numerator = numerator * f2.numerator;
+        //this is changing the value of f1 denominator
+        denominator = denominator * f2.denominator;
+
+        simplifyFraction();
+    }
+
+
 };
 
 
@@ -47,7 +59,10 @@ int main()
     Fraction f2(15,4);
 
     f1.add(f2);
-
     f1.print();
+    cout<<"After addition"<<endl;
     f2.print();
+    cout<<"After multiplication"<<endl;
+    f1.multiply(f2);
+    f1.print();
 }
