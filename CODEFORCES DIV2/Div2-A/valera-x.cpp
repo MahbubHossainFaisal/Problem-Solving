@@ -30,7 +30,7 @@ int main() {
     }
   }
 
-  if(flag){
+  if(flag and arr[0][0]!='x'){
     cout<<"YES"<<endl;
   }else{
     cout<<"NO"<<endl;
