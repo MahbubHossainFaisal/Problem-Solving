@@ -161,6 +161,7 @@ tree.insert(1)
 // else console.log('Not found!')
 let deletedNode = tree.remove(20,tree.root);
 console.log(deletedNode);
+traverse(tree.root);
 
 //console.log(JSON.stringify(traverse(tree.root)))
 
