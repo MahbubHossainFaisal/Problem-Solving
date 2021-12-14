@@ -145,8 +145,31 @@ int findMiddleElement(Node* head){
         first = first->next;
         second = second->next->next;
     }
-    
+
      return first->data; //odd number
+}
+
+
+void reverseLinkedList(Node *&head){
+    if(head == NULL){
+        return;
+    }
+    Node* currNode = head;
+
+    Node* nextNode = currNode->next;
+    while(nextNode != NULL){
+       Node* temp = nextNode->next;
+        nextNode->next = currNode;
+        currNode = nextNode;
+        nextNode = temp;
+
+
+    }
+    head->next = NULL;
+    head = currNode;
+     cout<<"Reversed List: "<<endl;
+    displayList(head);
+
 }
 int main(){
 
@@ -166,6 +189,9 @@ int main(){
 
    int mid = findMiddleElement(head);
    cout<<"Middle element: "<<mid<<endl;
+
+   reverseLinkedList(head);
+
 
    return 0;
 
