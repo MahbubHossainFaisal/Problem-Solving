@@ -17,6 +17,17 @@ bool checkSortedArray(int arr[],int n){
 
 }
 
+bool checkSortedArray2(int arr[],int n){
+    if(n==0 or n==1){
+        return true;
+    }
+    if(arr[n-2] > arr[n-1]){
+        return false;
+    }
+
+    return checkSortedArray2(arr,n-1);
+}
+
 
 
 int main()
@@ -29,6 +40,9 @@ int main()
    bool flag = false;
    bool ans = checkSortedArray(arr,n);
 
+   bool ans2 = checkSortedArray2(arr,n);
+
    cout<<ans<<endl;
+   cout<<ans2<<endl;
 
 }
